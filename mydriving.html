@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving Feedback Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://wallpapercave.com/wp/wp7452364.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .question {
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background: #6a11cb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #3c1053;
+        }
+        .responses {
+            margin-top: 20px;
+            text-align: left;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-car"></i> Driving Feedback Form</h2>
+        <p style="font-size: 18px; font-weight: 600; color: #555;">Hello my one and the only princess passenger (my fave person)💖💖💖💖</p>
+        <form id="feedbackForm">
+            <div class="question">1. How smooth is my driving?</div>
+            <input type="text" name="q1" required>
+            <div class="question">2. would you like someday to have a movie night in the car(ill get the sancks)?</div>
+            <input type="text" name="q2" required>
+            <div class="question">3. Do I maintain a safe speed?</div>
+            <input type="text" name="q3" required>
+            <div class="question">4. How comfortable do you feel as a passenger?</div>
+            <input type="text" name="q4" required>
+            <div class="question">5. would you like to bring you hello kitty blanky and take a nap???</div>
+            <input type="text" name="q5" required>
+            <div class="question">6. how good is the dj(you are the dj)?</div>
+            <input type="text" name="q6" required>
+            <div class="question">7. pleaseeee givvve me feedbacks to have a better passengar princess expiernece? (be creative)</div>
+            <input type="text" name="q7">
+            <button type="submit"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
+        </form>
+        <div class="responses" id="responses"></div>
+    </div>
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            let responsesDiv = document.getElementById("responses");
+            responsesDiv.innerHTML = "<h3>Feedback Received:</h3>";
+            formData.forEach((value, key) => {
+                responsesDiv.innerHTML += `<p><strong>${key.replace('q', 'Question ')}:</strong> ${value}</p>`;
+            });
+            this.reset();
+        });
+    </script>
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            let responsesDiv = document.getElementById("responses");
+            responsesDiv.innerHTML = "<h3>Feedback Received:</h3>";
+            formData.forEach((value, key) => {
+                responsesDiv.innerHTML += `<p><strong>${key.replace('q', 'Question ')}:</strong> ${value}</p>`;
+            });
+            this.reset();
+            
+            // Fireworks effect
+            let fireworks = document.createElement("div");
+            fireworks.style.position = "fixed";
+            fireworks.style.top = "50%";
+            fireworks.style.left = "50%";
+            fireworks.style.width = "100vw";
+            fireworks.style.height = "100vh";
+            fireworks.style.pointerEvents = "none";
+            document.body.appendChild(fireworks);
+
+            for (let i = 0; i < 10; i++) {
+                let spark = document.createElement("div");
+                spark.style.position = "absolute";
+                spark.style.width = "10px";
+                spark.style.height = "10px";
+                spark.style.backgroundColor = "#ffcc00";
+                spark.style.borderRadius = "50%";
+                spark.style.top = `${Math.random() * 100}%`;
+                spark.style.left = `${Math.random() * 100}%`;
+                spark.style.opacity = "1";
+                spark.style.transition = "all 1s ease-out";
+                fireworks.appendChild(spark);
+                
+                setTimeout(() => {
+                    spark.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+                    spark.style.opacity = "0";
+                }, 100);
+            }
+            
+            setTimeout(() => document.body.removeChild(fireworks), 1100);
+        });
+    </script>
+</body>
+</html>
